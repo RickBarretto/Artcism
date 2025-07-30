@@ -1,0 +1,11 @@
+
+
+uncaught?: $[execution :dictionary][
+    ;; Checks if an execution fails
+    not? zero? execution\code
+]
+
+cleanUnitt: $[][
+    ;; Cleans unitt generated files
+    delete.directory ".unitt"
+]
