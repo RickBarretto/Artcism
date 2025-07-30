@@ -87,7 +87,7 @@ it: $[description :string testCase :block][
         -> description = __exercism\name
 
     ensure.that: "Rule #8: test_cod:e must be testCase"
-        -> testCase = __exercism\test_code
+        -> __exercism\test_code = express testCase
 
     ensure.that: "Rule #9: status: must be valid"
         -> in? __exercism\status ["fail" "pass" "error"]
