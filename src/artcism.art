@@ -57,12 +57,15 @@ it: $[description :string testCase :block][
 
     error: try [do testCase]
 
-    __assertionsStatus: map __assertions '__assertion [
-         @[_repr __assertion, equal? @__assertion @[true]]
-    ]
+    __assertion: first __assertions 
 
-    __exercism\status: (last __assertionsStatus)? -> "pass" -> "fail"
-    __exercism\message: (first __assertionsStatus)
+    __exercism: #[
+        name: description
+        status: (equal? @__assertion @[true])? -> "pass" -> "fail"
+        message: _repr [__assertion]
+        output: __output
+        test_code: express testCase
+    ]
 
     if error? error [
         exercism\status: "error"
