@@ -53,7 +53,7 @@ it: $[description :string testCase :block][
 
     __exercism: #[
         name: description
-        status: (last __assertionsStatus)? -> "passed" -> "failed"
+        status: (last __assertionsStatus)? -> "pass" -> "fail"
         message: (first __assertionsStatus)
         test_code: express testCase
     ]
