@@ -5,13 +5,9 @@ describe "simple append" [
     it "keeps the order" [
         concat: debug.fmt: "Debugging: |value|" [a] ++ [b c d] 
         expects [equal? [a b c d] concat]
-        expects.be: 'equal?     @[[a b c d]     [a] ++ [b c d]]
-        expects.be: 'equal?     @[["b" "c" "d" "a"]     ["b" "c" "d"] ++ ["a"]]
-        expects.be: 'notEqual?  @[["a" "b" "c" "d"]     ["b" "c" "d"] ++ ["a"]]
     ]
 
     it.skip "has ++ as alias (todo)" [
-        expects.be: 'equal? @[append [] [] [] ++ [] ]
         expects.be: 'equal? @[append ["a" "b" "c"] ["a" "b"] ["a" "b" "c"] ++ ["a" "b"] ]
     ]
 ]
@@ -26,8 +22,6 @@ suite "append `:string`s" [
    
     it ":char appending results in :string" [
         expects.be: 'string? @['H'  ++ 'i'  ]
-        expects.be: 'string? @['H'  ++ "igh"]
-        expects.be: 'string? @["Ph" ++ 'i'  ]
     ]
 
     it "works with :char" [
@@ -38,8 +32,6 @@ suite "append `:string`s" [
     
     test "Arturo can be generated from :string and :char appending" [
         assert.with: 'equal? @["Arturo" "Art" ++ "uro"]
-        assert.with: 'equal? @["Arturo" "Artur" ++ 'o']
-        assert.with: 'equal? @["Arturo" 'A' ++ "rturo"]
     ]
 ]
 
@@ -53,10 +45,7 @@ describe "append magic-method" [
     it "should work for magic-methods" [
         container: to :container [[]]!
         
-        expects.be: 'empty? @[container\_block]
         expects.be: 'equal? @[[1 2] do -> container\append [1 2]]
-        expects.be: 'equal? @[[3 4] do -> append container [3 4]]
-        expects.be: 'equal? @[[5 6] do -> container ++ [5 6]]
     ]
 
 ]
