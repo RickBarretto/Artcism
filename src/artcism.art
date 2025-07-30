@@ -1,0 +1,70 @@
+;; author: « RickBarretto
+;; year: 2025
+;; licence: « MIT
+;; version: 1.0.0
+;; repository: « https://github.com/RickBarretto/artcism
+;;
+;; warning: {
+;;    Never import this as lean, or this will break the whole code.
+;;    At least, for now. This may change in future updates.
+;; }
+
+import.version: 3.0.0 {unitt}!
+
+exercism: store.json ~"results.json"
+
+unittIt: new 'it
+unittTest: new 'test
+
+
+it: $[description :string testCase :block][
+    ;; wraps unitt's `it` behavior
+
+    ; erases the test case if this must be skipped
+    ; basically the same as run an empty block.
+    if attr 'skip -> testCase: []
+
+    __assertions: []
+
+    expects: $[condition :block][
+        ; It's internal function to be used inside the testCase block.
+
+        ; The injected function wrapped into a block that will evaluate the expression.
+        ; This function is injected by using: .be:, .to: or .to.be:
+        __fn: @[attr 'with attr 'to attr 'be ] | filter => null?
+
+        ; If there is a function to be applied
+        ; this keyword will be put into the condition block.
+        if not? empty? __fn -> 
+            condition: prepend condition @[to :word last __fn]
+        
+        ; Then appends the this assertion into the internal assertion list.
+        '__assertions ++ @[condition]
+    ]
+
+    ; Alternative alias for the `expects` function.
+    assert: var 'expects
+
+    do testCase
+
+    __assertionsStatus: map __assertions '__assertion [
+         @[_repr __assertion, equal? @__assertion @[true]]
+    ]
+
+    __exercism: #[
+        name: description
+        status: (last __assertionsStatus)? -> "passed" -> "failed"
+        message: (first __assertionsStatus)
+        test_code: express testCase
+    ]
+
+    if "failed" = __exercism\status [
+        exercism\status: "fail"
+    ]
+
+    exercism\tests: exercism\tests ++ __exercism
+
+]
+
+; Alternative alias for the `it` function.
+test: var 'it

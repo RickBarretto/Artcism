@@ -1,4 +1,4 @@
-import ./{src/exercism}!
+import ./{src/artcism}!
 
 describe "simple append" [
 
