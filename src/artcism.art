@@ -96,5 +96,20 @@ it: $[description :string testCase :block][
 
 ]
 
+debug: $[value :any][
+    __format: (attr 'fmt) ?? express value
+    __buffer: ~"|__format| |type value|\n"
+ 
+    ; From all tests, takes the last one
+    ; adds it to its output
+    ; and then reinsert back into exercism store.
+    __tests: exercism\tests
+    __last: pop '__tests
+    __last\output: __last\output ++ __buffer
+    exercism\tests: __tests ++ __last
+
+    new value
+]
+
 ; Alternative alias for the `it` function.
 test: var 'it
