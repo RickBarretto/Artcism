@@ -75,9 +75,6 @@ it: $[description :string testCase :block][
 
     ensure.that: "Rule #9: status: must be valid"
         -> in? __exercism\status ["fail" "pass" "error"]
-    ensure.that: "Rule #9: status: must be error for skipped"
-        -> and? empty? testCase 
-                equal? "error" __exercism\status
 
     exercism\tests: exercism\tests ++ __exercism
 
