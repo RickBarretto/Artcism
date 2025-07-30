@@ -90,7 +90,7 @@ it: $[description :string testCase :block][
                    in? "skipped" lower exercism\message
     ]
 
-    if "failed" = __exercism\status [
+    if "fail" = __exercism\status [
         exercism\status: "fail"
     ]
 
