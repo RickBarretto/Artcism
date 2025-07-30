@@ -1,0 +1,13 @@
+entry:      "src/artcism"
+executable: "src/script"
+depends:    []
+requires:   [> 0.9.84]
+
+name: "artcism"
+description: "Exercism runner for Arturo Programming Language."
+license: "MIT"
+authors: ["RickBarretto"]
+homepage: "https://artcism.pkgr.art"
+repository: "https://github.com/RickBarretto/artcism"
+keywords: [arturo testing unittesting cli]
+categories: [learning tool]
