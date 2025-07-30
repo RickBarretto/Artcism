@@ -25,12 +25,7 @@ it: $[description :string testCase :block][
     if attr 'skip -> testCase: []
 
     __assertions: []
-
-    __exercism: #[
-        name: description
-        output: ""
-        test_code: express testCase
-    ]
+    __output: ""
 
     expects: $[condition :block][
         ; It's internal function to be used inside the testCase block.
@@ -51,8 +46,8 @@ it: $[description :string testCase :block][
     debug: $[value :any][
         __format: (attr 'fmt) ?? express value
         __buffer: ~"|__format| |type value|\n"
-
-        __exercism\output: truncate (__exercism\output ++ __buffer) 500
+        append '__output __buffer
+        truncate '__output 500
 
         new value
     ]
