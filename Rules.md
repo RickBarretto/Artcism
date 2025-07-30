@@ -49,3 +49,19 @@ So instead of `status:` be `error` only when no test run, this will be when Artu
 - must be `error` is test has uncaught exception
 - must be `error` if this is empty or skipped
 - must be `fail` is this fails
+
+## Rule 10 - Output Attribute & Debugging
+
+The API must provide a `debug` function
+- This function must take any value, optionally a format string, write into `output:` and then return the value it back.
+
+For instance:
+
+```
+test "Some test" [
+
+    variable: debug.fmt: "Debug: |value|" expression
+    ; => Debug: <value> :type
+
+]
+```
