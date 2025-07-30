@@ -1,0 +1,68 @@
+
+import ./{utils}!
+
+
+; -- Cleans the environment --
+
+cleanUnitt
+delete "results.json"
+
+
+; -- Sets up globals --
+
+exercise: arg\0
+exercism: store "results.json"
+
+ensure.that: "Rule #1: The output must be `results.json'" 
+    -> exists? "results.json"
+
+
+; -- Sets up top-level format --
+
+exercism\version: 2
+exercism\status: "pass"
+exercism\tests: []
+
+
+ensure.that: "Rule #2: version: must :integer."
+    -> integer? exercism\version
+
+ensure.that: "Rule #2: version: must be between 1 and 3."
+    -> between? exercism\version 1 3
+
+ensure.that: "Rule #2: message: should not exist by default."
+    -> key? exercism "message"
+
+ensure.that: "Rule #2: tests: must be empty."
+    -> empty? exercism\tests
+
+
+; -- Fills results's tests --
+
+command: ~"arturo |exercise| --filename:|exercise|"
+if uncaught? execution: <= execute.code command [
+    exercism\message: execution\output
+    exercism\status: "error"
+
+    ensure.that: "Rule #5: status: must be `error'" 
+        ->  "error" = exercism\status
+    
+    ensure.that: "Rule #5: message: must exist" 
+        ->  key? exercism "message"
+    ensure.that: "Rule #5: message: must be a :string" 
+        ->  string? exercism\message
+    ensure.that: "Rule #5: message: must display error" 
+        ->  not? empty? exercism\message
+
+]
+
+
+; -- Finishes the runner --
+
+cleanUnitt
+
+ensure.that: "Rule #3: status: must be valid." 
+    -> in? exercism\status ["pass" "fail" "error"]
+
+ensure.that: "Rule #4: No remaining `.unitt' cache"
+    -> exists?.directory ".unitt"
