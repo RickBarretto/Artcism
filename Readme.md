@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <i>{Art}cism</i> is a Exercism runner for the 
+    <i>{Art}cism</i> is an Exercism runner for the 
     <a href="https://github.com/arturo-lang/arturo/">
         Arturo Programming language
     </a>
