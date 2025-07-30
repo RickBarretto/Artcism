@@ -64,7 +64,7 @@ it: $[description :string testCase :block][
         status: (equal? @__assertion @[true])? -> "pass" -> "fail"
         message: _repr [__assertion]
         output: __output
-        test_code: express testCase
+        test_code: express.pretty testCase
     ]
 
     if error? error [
@@ -96,7 +96,7 @@ it: $[description :string testCase :block][
         -> description = __exercism\name
 
     ensure.that: "Rule #8: test_code: must be testCase"
-        -> __exercism\test_code = express testCase
+        -> __exercism\test_code = express.pretty testCase
 
     ensure.that: "Rule #9: status: must be valid"
         -> in? __exercism\status ["fail" "pass" "error"]
