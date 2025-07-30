@@ -25,3 +25,9 @@ The output must be `results.json`.
 - `status:` must be `error`
 - `message:` must exist and display Arturo's output.
 
+## Rules #6 - Tests at Runtime errors
+
+Since Arturo won't get syntax errors before execute the code, but during its execution due to its own nature, I decided to break some rules.
+So instead of `status:` be `error` only when no test run, this will be when Arturo's Interpreter fail.
+
+- `tests:` must be empty when `status:` is `error`.

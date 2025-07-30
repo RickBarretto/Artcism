@@ -43,6 +43,7 @@ command: ~"arturo |exercise| --filename:|exercise|"
 if uncaught? execution: <= execute.code command [
     exercism\message: execution\output
     exercism\status: "error"
+    exercism\tests: []
 
     ensure.that: "Rule #5: status: must be `error'" 
         ->  "error" = exercism\status
@@ -53,6 +54,9 @@ if uncaught? execution: <= execute.code command [
         ->  string? exercism\message
     ensure.that: "Rule #5: message: must display error" 
         ->  not? empty? exercism\message
+
+    ensure.that: "Rule #6: tests: are empty"
+        -> empty? exercism\tests
 
 ]
 
