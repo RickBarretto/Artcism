@@ -45,7 +45,7 @@ it: $[description :string testCase :block][
     ; Alternative alias for the `expects` function.
     assert: var 'expects
 
-    do testCase
+    error: try [do testCase]
 
     __assertionsStatus: map __assertions '__assertion [
          @[_repr __assertion, equal? @__assertion @[true]]
@@ -56,6 +56,11 @@ it: $[description :string testCase :block][
         status: (last __assertionsStatus)? -> "passed" -> "failed"
         message: (first __assertionsStatus)
         test_code: express testCase
+    ]
+
+    if error? error [
+        exercism\status: "error"
+        exercism\message: to :string error
     ]
 
     if empty? testCase [
