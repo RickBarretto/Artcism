@@ -103,6 +103,9 @@ it: $[description :string testCase :block][
     ensure.that: "Rule #9: status: must be valid"
         -> in? __exercism\status ["fail" "pass" "error"]
 
+    ensure.that: "Rule #12: must have :message"
+        -> string? __exercism\message
+
     exercism\tests: exercism\tests ++ __exercism
 
 ]
