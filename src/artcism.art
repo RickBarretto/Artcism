@@ -52,7 +52,7 @@ it: $[description :string testCase :block][
         __format: (attr 'fmt) ?? express value
         __buffer: ~"|__format| |type value|\n"
 
-        __exercism\output: __exercism\output ++ __buffer
+        __exercism\output: truncate (__exercism\output ++ __buffer) 500
 
         new value
     ]

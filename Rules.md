@@ -65,3 +65,6 @@ test "Some test" [
 
 ]
 ```
+
+## Rule 11 - Output Truncate
+`output:` must be truncated to 500 characters.
