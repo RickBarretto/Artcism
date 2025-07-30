@@ -31,7 +31,7 @@ ensure.that: "Rule #2: version: must be between 1 and 3."
     -> between? exercism\version 1 3
 
 ensure.that: "Rule #2: message: should not exist by default."
-    -> key? exercism "message"
+    -> throws? [exercism\message]
 
 ensure.that: "Rule #2: tests: must be empty."
     -> empty? exercism\tests
@@ -49,7 +49,7 @@ if uncaught? execution: <= execute.code command [
         ->  "error" = exercism\status
     
     ensure.that: "Rule #5: message: must exist" 
-        ->  key? exercism "message"
+        ->  not? throws? [exercism\message]
     ensure.that: "Rule #5: message: must be a :string" 
         ->  string? exercism\message
     ensure.that: "Rule #5: message: must display error" 
