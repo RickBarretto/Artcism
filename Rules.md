@@ -46,5 +46,6 @@ So instead of `status:` be `error` only when no test run, this will be when Artu
 ### Rule #9 - Status Attribute
 - `status:` must be `pass`, `fail` or `error`
 - must be `pass` by default
+- must be `error` is test has uncaught exception
 - must be `error` if this is empty or skipped
 - must be `fail` is this fails

@@ -60,6 +60,7 @@ it: $[description :string testCase :block][
 
     if empty? testCase [
         exercism\status: "error"
+        exercism\message: "Empty test or skipped."
     ]
 
     if "failed" = __exercism\status [
