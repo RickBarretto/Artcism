@@ -68,3 +68,7 @@ test "Some test" [
 
 ## Rule 11 - Output Truncate
 `output:` must be truncated to 500 characters.
+
+
+## Rule 12 - Message Attribute
+Tests always must have `message:`.
