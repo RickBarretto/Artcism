@@ -61,11 +61,22 @@ it: $[description :string testCase :block][
     if error? error [
         exercism\status: "error"
         exercism\message: to :string error
+
+        ensure.that: "Rule #9: status: is `error' for uncaught exception" 
+            ->  "error" = exercism\status
+        ensure.that: "Rule #9: message: displays uncaught exception"
+            -> (to :string error) = exercism\message
     ]
 
     if empty? testCase [
         exercism\status: "error"
         exercism\message: "Empty test or skipped."
+
+        ensure.that: "Rule #9: status: is `error' for skipped tests" 
+            ->  "error" = exercism\status
+        ensure.that: "Rule #9: message: displays reason"
+            -> or? in? "empty" lower exercism\message
+                   in? "skipped" lower exercism\message
     ]
 
     if "failed" = __exercism\status [
