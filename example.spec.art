@@ -2,13 +2,13 @@ import ./{src/artcism}!
 
 describe "simple append" [
 
+    it "will fail" [
+        expects.be: 'equal? [[a] [b]]
+    ]
+
     it "keeps the order" [
         concat: debug.fmt: "Debugging: |value|" [a] ++ [b c d] 
         expects [equal? [a b c d] concat]
-    ]
-
-    it.skip "has ++ as alias (todo)" [
-        expects.be: 'equal? @[append ["a" "b" "c"] ["a" "b"] ["a" "b" "c"] ++ ["a" "b"] ]
     ]
 ]
 
