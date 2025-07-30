@@ -39,7 +39,7 @@ ensure.that: "Rule #2: tests: must be empty."
 
 ; -- Fills results's tests --
 
-command: ~"arturo |exercise| --filename:|exercise|"
+command: ~"arturo --no-color |exercise| --filename:|exercise|"
 if uncaught? execution: <= execute.code command [
     exercism\message: execution\output
     exercism\status: "error"
