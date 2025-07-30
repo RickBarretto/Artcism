@@ -69,4 +69,4 @@ ensure.that: "Rule #3: status: must be valid."
     -> in? exercism\status ["pass" "fail" "error"]
 
 ensure.that: "Rule #4: No remaining `.unitt' cache"
-    -> exists?.directory ".unitt"
+    -> not? exists?.directory ".unitt"
