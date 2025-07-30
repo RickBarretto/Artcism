@@ -58,9 +58,25 @@ it: $[description :string testCase :block][
         test_code: express testCase
     ]
 
+    if empty? testCase [
+        exercism\status: "error"
+    ]
+
     if "failed" = __exercism\status [
         exercism\status: "fail"
     ]
+
+    ensure.that: "Rule #7: name: must be human-readable"
+        -> description = __exercism\name
+
+    ensure.that: "Rule #8: test_cod:e must be testCase"
+        -> testCase = __exercism\test_code
+
+    ensure.that: "Rule #9: status: must be valid"
+        -> in? __exercism\status ["fail" "pass" "error"]
+    ensure.that: "Rule #9: status: must be error for skipped"
+        -> and? empty? testCase 
+                equal? "error" __exercism\status
 
     exercism\tests: exercism\tests ++ __exercism
 

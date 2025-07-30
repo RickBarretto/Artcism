@@ -4,7 +4,7 @@ I've created this Rule Set based on [Exercism's Documentation for Runners Interf
 
 This Rule Set help me to track requirements and make sure everything was right-ly done.
 
-## Top-Level Rules
+## Runner Rules
 
 ### Rule #1 - Output
 
@@ -33,3 +33,18 @@ Since Arturo won't get syntax errors before execute the code, but during its exe
 So instead of `status:` be `error` only when no test run, this will be when Arturo's Interpreter fail.
 
 - `tests:` must be empty when `status:` is `error`.
+
+
+## API Rules
+
+### Rule #7 - Name Attribute
+- `name:` must be a human-readable `:string`
+
+### Rule #8 - Test Code Attribute
+- `test_code:` must be a `:string` with the code itself.
+
+### Rule #9 - Status Attribute
+- `status:` must be `pass`, `fail` or `error`
+- must be `pass` by default
+- must be `error` if this is empty or skipped
+- must be `fail` is this fails
