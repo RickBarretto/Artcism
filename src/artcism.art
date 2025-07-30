@@ -26,6 +26,12 @@ it: $[description :string testCase :block][
 
     __assertions: []
 
+    __exercism: #[
+        name: description
+        output: ""
+        test_code: express testCase
+    ]
+
     expects: $[condition :block][
         ; It's internal function to be used inside the testCase block.
 
@@ -42,6 +48,15 @@ it: $[description :string testCase :block][
         '__assertions ++ @[condition]
     ]
 
+    debug: $[value :any][
+        __format: (attr 'fmt) ?? express value
+        __buffer: ~"|__format| |type value|\n"
+
+        __exercism\output: __exercism\output ++ __buffer
+
+        new value
+    ]
+
     ; Alternative alias for the `expects` function.
     assert: var 'expects
 
@@ -51,12 +66,8 @@ it: $[description :string testCase :block][
          @[_repr __assertion, equal? @__assertion @[true]]
     ]
 
-    __exercism: #[
-        name: description
-        status: (last __assertionsStatus)? -> "pass" -> "fail"
-        message: (first __assertionsStatus)
-        test_code: express testCase
-    ]
+    __exercism\status: (last __assertionsStatus)? -> "pass" -> "fail"
+    __exercism\message: (first __assertionsStatus)
 
     if error? error [
         exercism\status: "error"
@@ -94,21 +105,6 @@ it: $[description :string testCase :block][
 
     exercism\tests: exercism\tests ++ __exercism
 
-]
-
-debug: $[value :any][
-    __format: (attr 'fmt) ?? express value
-    __buffer: ~"|__format| |type value|\n"
- 
-    ; From all tests, takes the last one
-    ; adds it to its output
-    ; and then reinsert back into exercism store.
-    __tests: exercism\tests
-    __last: pop '__tests
-    __last\output: __last\output ++ __buffer
-    exercism\tests: __tests ++ __last
-
-    new value
 ]
 
 ; Alternative alias for the `it` function.

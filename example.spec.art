@@ -3,7 +3,8 @@ import ./{src/artcism}!
 describe "simple append" [
 
     it "keeps the order" [
-        expects [equal? [a b c d]     [a] ++ [b c d]]
+        concat: debug.fmt: "Debugging: |value|" [a] ++ [b c d] 
+        expects [equal? [a b c d] concat]
         expects.be: 'equal?     @[[a b c d]     [a] ++ [b c d]]
         expects.be: 'equal?     @[["b" "c" "d" "a"]     ["b" "c" "d"] ++ ["a"]]
         expects.be: 'notEqual?  @[["a" "b" "c" "d"]     ["b" "c" "d"] ++ ["a"]]
