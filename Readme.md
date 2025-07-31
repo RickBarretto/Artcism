@@ -20,19 +20,6 @@
     />
 </p>
 
-<!-- 
-## At a Glance
-
-Header placeholder for future usage.
-<p align="center">
-<img 
-    alt="Header Description"
-    width="720"
-    src="./docs/header.png"
-/>
-</p> 
--->
-
 ## Trying {Art}cism
 
 **Installation**
