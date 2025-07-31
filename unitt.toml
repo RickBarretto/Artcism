@@ -1,0 +1,5 @@
+# unitt.toml - Configuration for unitt
+
+path = "."
+suffix = ".spec.art"
+binary = "arturo"

@@ -67,6 +67,21 @@ it: $[description :string testCase :block][
         test_code: express.pretty testCase
     ]
 
+    __assertionsStatus: map __assertions '__assertion [
+         @[_repr __assertion, equal? @__assertion @[true]]
+    ]
+
+    __local_spec: #[
+        description: description
+        assertions: __assertionsStatus
+    ]
+
+    switch 'standalone = __unitt__scope [
+        unitt\standalone: unitt\standalone ++ __local_spec
+    ][
+        __unitt_spec\tests: __unitt_spec\tests ++ __local_spec
+    ]
+
     if error? error [
         exercism\status: "error"
         exercism\message: to :string error
@@ -105,11 +120,6 @@ it: $[description :string testCase :block][
         -> string? __exercism\message
 
     exercism\tests: exercism\tests ++ __exercism
-
-    ; This makes possible the unitt compatibility
-    if not? contains? arg "--no-unitt" [
-        discard try [unittIt description testCase]
-    ]
 
 ]
 
