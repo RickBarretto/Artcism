@@ -152,11 +152,11 @@ This will show you:
 
 ### *Compatibility*
 
-{Art}cism has syntax compatibility with [`unitt`](unitt.pkgr.art) and uses it behind the scenes, but artcism is not fully compatible with `unitt`.
+{Art}cism has compatibility with [`unitt`](unitt.pkgr.art) by using it behind the scenes by importing it and wrapping some functions. Technically, you can run any {Art}cism learning module with `unitt` wich will display you useful informations and also is suitable for CI/CD pipelining. If you notice some inconsistency between {Art}cism and `unitt`, please open an issue on this repository and let me know.
 
-{Art}cism was intented to be used for single files, with single assertions tests and no terminal output at all.
+While `unitt` is very good for CI integration and run multiple files into a set directory, {Art}cism was intented to be used for single files, with single assertions tests and no terminal output at all.
 
-This is not mean to be used for CI/CD Actions neither as unit-test library, use `unitt` instead for those purposes. Any `unitt`'s output is cleared after calling `artcism`.
+Use each one for their own purposes. Don't try to use {Art}cism as testing library, `unitt` is your right choice for those purposes.
 
 ### *Rpec-ish API*
 
