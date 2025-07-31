@@ -107,8 +107,8 @@ it: $[description :string testCase :block][
     exercism\tests: exercism\tests ++ __exercism
 
     ; This makes possible the unitt compatibility
-    discard try [
-        unittIt description testCase
+    if not? contains? arg "--no-unitt" [
+        discard try [unittIt description testCase]
     ]
 
 ]
